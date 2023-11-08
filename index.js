@@ -21,5 +21,22 @@ console.log(typeof b)
 //console.log("나의 이름은 " + name + "이고, 나의 취미는 " + hobby + "입니다.")
 //console.log(`나의 이름은 ${name}이고, 나의 취미는 ${hobby}입니다.`)
 
+// 숫자 배열
 const arr = [1, 2, 3]
 console.log(arr[0])
+const arr2 = ["최연성", "연성", "최"]
+console.log(arr2)
+const arr3 = ["최연성", 1, 2, "연성"]
+console.log(arr3)
+
+// 객체
+const obj1 = {name: "최연성", hobby: "게임"}
+console.log(obj1)
+const obj2 = {name: "연성", hobby: "유튜브시청"}
+
+const arr4 = [
+    {name: "최연성", hobby: "게임"},
+    {name: "연성", hobby: "유튜브시청"},
+    3
+]
+console.log(arr4[0].hobby)
