@@ -4,9 +4,9 @@
 }
 
 #todo-container {
-    width: 50%; height: 800px;
+    width: 500px; height: 700px;
     margin: auto; margin-top: 30px;
-    border: 5px solid #E8D9FF; border-radius: 5%;
+    border: 5px solid #E8D9FF; border-radius: 15%;
 }
 #todo-container > h1 {
     margin: 0 auto; margin-top: 30px;
