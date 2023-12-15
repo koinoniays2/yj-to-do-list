@@ -8,16 +8,20 @@ function saveToDos() {
     localStorage.setItem("todos", JSON.stringify(toDos)); // localStorage에 저장(key, value)
     // stringify를 안하면 배열로 저장이 안됨
 }
-
-
 // 삭제버튼 함수
 function deleteToDo(e) {
-    e.target.parentElement.remove();
+    li = e.target.parentElement;
+    li.remove();
+    // 삭제하고 남은것들만 재배열
+    toDos = toDos.filter((item) => item.id !== parseInt(li.id)); 
+    //남아있는 item.id와 삭제된 li.id가 같지않은 것들 즉, 삭제되지 않은것들
+    saveToDos(); //localStorage에 다시 저장
 }
 
 // 화면에 그리기 함수
 function paintToDo(newToDo) {
     const li = document.createElement("li");
+    li.setAttribute("id",newToDo.id); //객체의 id값을 li속성의 id값으로 저장
     const span = document.createElement("span");
     const delBtn = document.createElement("button");
 
@@ -27,7 +31,7 @@ function paintToDo(newToDo) {
     delBtn.innerText = "❌"; // 이모지: window + ;
     li.appendChild(span);
     li.appendChild(delBtn);
-    span.innerText = newToDo;
+    span.innerText = newToDo.text;
     toDoList.appendChild(li);
 }
 
@@ -37,13 +41,17 @@ function paintToDo(newToDo) {
 function handleToDoSubmit(e) {
     e.preventDefault(); // form을 submit이 되면 새로고침 된다. submit의 기본 행위 막기
     
-    const newToDo = toDoInput.value; // input에 입력된 값 저장
+    // 삭제를 위해 값을 배열 객체에 담기 임의 id값: Date.now()
+    const newToDoObj = {
+        text: toDoInput.value, // input에 입력된 값 저장
+        id: Date.now()
+    }
     toDoInput.value = ""; // 저장 후 남아있는 value를 지우기 위해
     
-    paintToDo(newToDo);
+    paintToDo(newToDoObj);
     
-    //웹 브라우저가 제공하는 local storage에 저장
-    toDos.push(newToDo); // 값을 배열에 저장
+    //웹 브라우저가 제공하는 local storage에 임시 저장
+    toDos.push(newToDoObj); // 값을 객체에 배열 저장
     saveToDos();
 }
 
@@ -59,3 +67,4 @@ if(savedToDos !== null) {
     toDos = parsedTodos; //local storage에 저장된 값이 있으면 빈 배열에 넣어준다.
     toDos.forEach((item) => paintToDo(item));
 }
+

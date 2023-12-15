@@ -1,10 +1,19 @@
+* { margin: 0; padding: 0; box-sizing: border-box;}
+
+#todo-container {
+    width: 500px; height: 800px; margin: auto; margin-top: 30px;
+    background-image: url(images/to-do-list.png);
+    background-repeat: no-repeat;
+}
+#todo-container > h1 {
+    margin: 0 auto; text-align: center; color: #363636;
+}
 form {
-    width: 500px;
-    margin: 0 auto;
-    padding: 40px;
+    width: 300px;
+    margin: 0 auto; padding-top: 30px;
 }
 input {
-    width: 100%;
+    width: 300px;
     padding: 10px 10px;
 }
 #todo-list {
