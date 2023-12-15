@@ -1,35 +1,79 @@
 * { margin: 0; padding: 0; box-sizing: border-box;}
+#todo-form i, span {
+    color: #363636;
+}
 
 #todo-container {
-    width: 500px; height: 800px; margin: auto; margin-top: 30px;
-    background-image: url(images/to-do-list.png);
-    background-repeat: no-repeat;
+    width: 50%; height: 800px;
+    margin: auto; margin-top: 30px;
+    border: 5px solid #E8D9FF; border-radius: 5%;
 }
 #todo-container > h1 {
-    margin: 0 auto; text-align: center; color: #363636;
+    margin: 0 auto; margin-top: 30px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 2px #363636;
 }
-form {
-    width: 300px;
-    margin: 0 auto; padding-top: 30px;
+
+#todo-form {
+    display: flex;
+    align-items: flex-end;
+    margin: 30px 30px;
 }
-input {
-    width: 300px;
+#todo-form i {
+    font-size: 2rem;
+}
+#todo-form > .todo-input {
+    flex-basis: 50%;
     padding: 10px 10px;
+    border: none; outline: none;
+    border-bottom: 1px solid #D1B2FF;
 }
+    .todo-input::placeholder {
+        font-size: 1rem; color: #8C8C8C;
+        border-bottom: #D1B2FF;
+    }
+#todo-form > .enter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    .enter img {
+        width: 16px;
+        height: 16px;
+    }
+    .enter span {
+        font-size: 0.8rem;
+    }
+#todo-form > .btn-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: right;
+}
+#todo-form > .btn-container > span {
+    padding: 5px;
+    cursor: pointer;
+}
+
 #todo-list {
-    width: 500px;
+    width: 90%;
     margin: 0 auto;
 }
     #todo-list li {
         list-style: none;
-        border-bottom: 1px solid black;
-        margin-bottom: 10px;
         position: relative;
-        height: 50px;
+        display: flex;
+        align-items: flex-end;
+        height: 30px;
+        cursor: pointer;
     }
     #todo-list span {
-        position: absolute;
-        bottom: 0;
+        margin-left: 10px;
+        border-bottom: 1px solid #C98AFF;
+        color: #363636;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 button {
     position: absolute;
