@@ -6,9 +6,25 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/96b5911d82.js" crossorigin="anonymous"></script>
     <link href="todo-list.css" rel="stylesheet" type="text/css" />
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
+    <header id="header">
+        <div class="clock-container">
+            <div id="clock"></div>
+        </div>
+        <div class="rand-image-container">
+            <div id="rand-image"></div>
+            <div id="quotes"></div>
+        </div>
+        <div class="weather-container">
+            <div id="weather"></div>
+        </div>
+    </header>
     <div id="todo-container">
         <h1><i class="fa-solid fa-list"></i> TO-DO-LIST</h1>
         <form id="todo-form">
@@ -27,5 +43,7 @@
     </div>
 
     <script src="todo-list-ordering.js"></script>
+    <script src="weather.js"></script>
+    <script src="randImage.js"></script>
 </body>
 </html>
