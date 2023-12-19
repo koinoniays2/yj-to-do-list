@@ -2,6 +2,7 @@ window.addEventListener("load", function () {
     const toDoForm = document.querySelector("#todo-form");
     const toDoInput = document.querySelector("#todo-form input");
     const toDoList = document.querySelector("#todo-list");
+    const tbody = document.querySelector("tbody");
     // 값(객체)가 저장 될 배열
     let saveToDo = [];
 
@@ -32,20 +33,23 @@ window.addEventListener("load", function () {
 
     // 화면에 그리기 함수
     function paintToDo(newToDo) {
-        const li = document.createElement("li");
-        li.setAttribute("id", newToDo.id); //submit 된 객체의 id속성을 li의 id로 저장
+        const tr = document.createElement("tr");
+        tr.setAttribute("id", newToDo.id); //submit 된 객체의 id속성을 li의 id로 저장
+        const th = document.createElement("th");
         const input = document.createElement("input");
         input.setAttribute("type", "checkbox");
-        li.appendChild(input);
+        tr.appendChild(th);
+        th.appendChild(input);
+        const td = document.createElement("td");
         const span = document.createElement("span");
         span.innerText = newToDo.text; // 매개변수로 들어온 객체의 text값을 넣는다.
-        li.appendChild(span);
-        toDoList.appendChild(li);
+        tr.appendChild(td);
+        td.appendChild(span);
+        tbody.appendChild(tr);
 
-        // li를 클릭했을 때 체크 되게 하기
-        li.addEventListener("click", function(e){
-            let li = e.currentTarget;
-            let input = li.querySelector('input');
+        // td를 클릭했을 때 체크 되게 하기
+        td.addEventListener("click", function(e){
+            let input = e.currentTarget.parentNode.querySelector('input');
             input.checked = !input.checked;
             /* 클릭할 때 마다 토글
             클릭하면 초기 input.checked의 값인 false가 !false되어 true로 변하고 체크가된다. */
@@ -64,7 +68,7 @@ window.addEventListener("load", function () {
         };
         // 체크 된 박스들 값 뽑아내기
         checkboxes.forEach((item) => {
-            let selectList = item.parentNode; // 뽑아 낸 체크박스의 부모(=li) 값 저장
+            let selectList = item.parentNode.parentNode; // 뽑아 낸 체크박스의 부모(tr) 값 저장
             selectList.remove(); // 삭제
 
             //삭제 후 Local storage에 재배열

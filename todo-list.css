@@ -63,6 +63,7 @@ body { background-color: #FFFDFF; }
     width: 500px; height: 700px;
     margin: auto; margin-top: 30px;
     border: 5px solid #E8D9FF; border-radius: 15%;
+    overflow: hidden;
 }
 #todo-container > h1 {
     margin: 0 auto; margin-top: 30px;
@@ -112,30 +113,24 @@ body { background-color: #FFFDFF; }
 }
 
 #todo-list {
-    width: 90%;
-    margin: 0 auto;
+    margin-top: 50px; margin-left: 30px;
+    display: flex;
+    flex-direction: column;
 }
-    #todo-list li {
-        list-style: none;
-        position: relative;
-        display: flex;
-        align-items: flex-end;
-        height: 30px;
-        cursor: pointer;
-    }
-    #todo-list span {
-        margin-left: 10px;
-        border-bottom: 1px solid #C98AFF;
-        color: #363636;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-button {
-    position: absolute;
-    right: 0; bottom: 0;
+#todo-list th{
+    min-width: 30px;
 }
-
+#todo-list td{
+    cursor: pointer;
+    max-width: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#todo-list span {
+    margin-left: 10px;
+    color: #363636;
+}
 @media screen and (max-width: 768px) {
     .rand-image-container {
         display: none;
