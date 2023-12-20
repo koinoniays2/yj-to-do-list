@@ -2,7 +2,6 @@ window.addEventListener("load", function () {
     const toDoForm = document.querySelector("#todo-form");
     const toDoInput = document.querySelector("#todo-form input");
     const toDoList = document.querySelector("#todo-list");
-    const tbody = document.querySelector("tbody");
     // 값(객체)가 저장 될 배열
     let saveToDo = [];
 
@@ -35,17 +34,18 @@ window.addEventListener("load", function () {
     function paintToDo(newToDo) {
         const tr = document.createElement("tr");
         tr.setAttribute("id", newToDo.id); //submit 된 객체의 id속성을 li의 id로 저장
+        tr.setAttribute("draggable","true");
         const th = document.createElement("th");
         const input = document.createElement("input");
         input.setAttribute("type", "checkbox");
-        tr.appendChild(th);
         th.appendChild(input);
+        tr.appendChild(th);
         const td = document.createElement("td");
         const span = document.createElement("span");
         span.innerText = newToDo.text; // 매개변수로 들어온 객체의 text값을 넣는다.
-        tr.appendChild(td);
         td.appendChild(span);
-        tbody.appendChild(tr);
+        tr.appendChild(td);
+        toDoList.appendChild(tr);
 
         // td를 클릭했을 때 체크 되게 하기
         td.addEventListener("click", function(e){
@@ -74,7 +74,7 @@ window.addEventListener("load", function () {
             //삭제 후 Local storage에 재배열
             saveToDo = saveToDo.filter((item) => item.id != parseInt(selectList.id));
             localStorage.setItem("todos", JSON.stringify(saveToDo));
-            /* 객체에 남아있는 item.id가 체크 된 li의 id와 같지 않은 것들만 재배열하여 저장
+            /* 객체에 남아있는 item.id가 체크 된 tr의 id와 같지 않은 것들만 재배열하여 저장
             즉 체크되지 않은 id들을 filter로 재배열하여 Local storage에 다시 저장 */
         });
         alert("선택한 리스트가 삭제되었습니다.");

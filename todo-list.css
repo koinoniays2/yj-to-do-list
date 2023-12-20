@@ -131,6 +131,10 @@ body { background-color: #FFFDFF; }
     margin-left: 10px;
     color: #363636;
 }
+.dragging{
+    opacity: 0.2;
+}
+
 @media screen and (max-width: 768px) {
     .rand-image-container {
         display: none;
