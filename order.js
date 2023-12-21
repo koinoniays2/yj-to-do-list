@@ -3,7 +3,7 @@ window.addEventListener("load", function () {
     const trs = Array.from(table.children); // 또는 [...table.children];
     console.log(trs);
     let toDos = [];
-    
+
     trs.forEach((tr) => {
         tr.addEventListener("dragstart", () => {
             tr.classList.add("dragging");
@@ -16,10 +16,20 @@ window.addEventListener("load", function () {
     const initSortableList = e => {
         e.preventDefault();
         const draggingItem = table.querySelector(".dragging");
+        const mouseY = e.clientY;
+
         const siblings = [...table.querySelectorAll("tr:not(.dragging)")];
-        let nextSibling = siblings.find((sibling) => {
-            return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
-        });
+        let nextSibling = null;
+
+        for (const sibling of siblings) {
+            const rect = sibling.getBoundingClientRect();
+            const siblingMiddleY = rect.top + rect.height / 2;
+
+            if (mouseY < siblingMiddleY) {
+                nextSibling = sibling;
+                break;
+            }
+        }
         table.insertBefore(draggingItem, nextSibling);
     };
 
@@ -41,10 +51,18 @@ window.addEventListener("load", function () {
     };
 
 
+
     table.addEventListener("dragover", initSortableList)
-    table.addEventListener("dragenter", (e) => { e.preventDefault(); });
-    table.addEventListener("drop", () => {
-        const newTr = document.querySelectorAll("tr");
-        reSave(newTr);
+    table.addEventListener("dragenter", () => {
+        table.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const newTr = document.querySelectorAll("tr");
+            reSave(newTr);
+        });
     });
+
+
+    // tr을 받아오기 위해 저장 버튼으로 리로드
+    const save = document.querySelector(".save-list");
+    save.addEventListener("click", () => { location.reload(); })
 });
